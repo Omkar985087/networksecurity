@@ -1,58 +1,71 @@
 import os
 import sys
 import json
-
+import pandas as pd
+import pymongo
+import certifi
+from urllib.parse import quote_plus
 from dotenv import load_dotenv
+
+from networksecurity.exception.exception import NetworkSecurityException
+
 load_dotenv()
 
-MONGO_DB_URL=os.getenv("MONGO_CLUSTER")
-print(MONGO_DB_URL)
+# Mongo credentials
+MONGO_USER = os.getenv("MONGO_USER")
+MONGO_PASS = quote_plus(os.getenv("MONGO_PASS"))
+MONGO_CLUSTER = os.getenv("MONGO_CLUSTER")
 
-import certifi
-ca=certifi.where()
+MONGO_DB_URL = (
+    f"mongodb+srv://{MONGO_USER}:{MONGO_PASS}"
+    f"@{MONGO_CLUSTER}/?retryWrites=true&w=majority"
+)
 
-import pandas as pd
-import numpy as np
-import pymongo
-from networksecurity.exception.exception import NetworkSecurityException
-from networksecurity.logging.logger import logging
 
-class NetworkDataExtract():
+class NetworkDataExtract:
     def __init__(self):
         try:
-            pass
+            self.mongo_client = pymongo.MongoClient(
+                MONGO_DB_URL,
+                tls=True,
+                tlsCAFile=certifi.where()
+            )
         except Exception as e:
-            raise NetworkSecurityException(e,sys)
-        
-    def csv_to_json_convertor(self,file_path):
+            raise NetworkSecurityException(e, sys)
+
+    def csv_to_json_convertor(self, file_path: str):
         try:
-            data=pd.read_csv(file_path)
-            data.reset_index(drop=True,inplace=True)
-            records=list(json.loads(data.T.to_json()).values())
+            data = pd.read_csv(file_path)
+            data.reset_index(drop=True, inplace=True)
+            records = list(json.loads(data.T.to_json()).values())
             return records
         except Exception as e:
-            raise NetworkSecurityException(e,sys)
-        
-        def insert_data_mongodb(self,records,database,collection):
-            try:
-                self.database=database
-                self.records=records
-                self.collection=collection
+            raise NetworkSecurityException(e, sys)
 
-                self.mongo_client=pymongo.MongoClient(MONGO_DB_URL)
-                self.database=self.mongo_client[self.database]
-                self.collection=self.database[self.collection]
-                self.collection.insert_many(self.records)
-                return(len(self.records))
-            except Exception as e:
-                raise NetworkSecurityException(e,sys)
-            
-if __name__=="__main__":
-    FILE_PATH="Network_data\phisingData.csv"
-    DATABASE="OMKAR"
-    Collection="NETWORK"
-    networkobj=NetworkDataExtract()
-    records=networkobj.csv_to_json_convertor(file_path=FILE_PATH)
-    print(records)
-    no_of_records=networkobj.insert_data_mongodb(records,DATABASE,Collection)
-    print(no_of_records)
+    def insert_data_mongodb(self, records, database, collection):
+        try:
+            db = self.mongo_client[database]
+            col = db[collection]
+            col.insert_many(records)
+            return len(records)
+        except Exception as e:
+            raise NetworkSecurityException(e, sys)
+
+
+if __name__ == "__main__":
+    FILE_PATH = r"Network_data\phisingData.csv"
+    DATABASE = "OMKAR"
+    COLLECTION = "NETWORK"
+
+    networkobj = NetworkDataExtract()
+    records = networkobj.csv_to_json_convertor(FILE_PATH)
+
+    print(f"Total records to insert: {len(records)}")
+
+    no_of_records = networkobj.insert_data_mongodb(
+        records,
+        DATABASE,
+        COLLECTION
+    )
+
+    print(f"✅ Inserted {no_of_records} records into MongoDB")
