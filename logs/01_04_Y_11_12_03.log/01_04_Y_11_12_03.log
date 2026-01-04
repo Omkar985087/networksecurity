@@ -1,0 +1,10 @@
+[2026-01-04 11:12:05,423],50 root -INFO - initiate data ingestion
+[2026-01-04 11:12:08,196],104 root -INFO - Train-test split completed successfully
+[2026-01-04 11:12:08,196],54 root -INFO - data initiation completed
+[2026-01-04 11:12:08,212],61 root -INFO - initiate data validion
+[2026-01-04 11:12:08,243],39 root -INFO - Required columns: 31
+[2026-01-04 11:12:08,243],40 root -INFO - Dataframe columns: 31
+[2026-01-04 11:12:08,243],39 root -INFO - Required columns: 31
+[2026-01-04 11:12:08,243],40 root -INFO - Dataframe columns: 31
+[2026-01-04 11:12:08,524],65 root -INFO - data validation completed
+[2026-01-04 11:12:08,524],69 root -INFO - data Transformation started
