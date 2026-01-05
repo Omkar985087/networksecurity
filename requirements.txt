@@ -11,4 +11,5 @@ pymongo
 dill
 pyaml
 mlflow
+dagshub
 #-e .
