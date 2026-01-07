@@ -82,3 +82,68 @@ networksecurity/
 │── Dockerfile
 │── requirements.txt
 │── main.yml (GitHub Actions)
+
+☁️ AWS Deployment
+
+Push image to AWS ECR
+
+Deploy on EC2 using GitHub Actions self-hosted runner
+
+CI/CD fully automated
+
+🔁 CI/CD Pipeline
+
+Triggered on push to main
+
+Steps:
+
+Lint
+
+Build Docker image
+
+Push to ECR
+
+Pull on EC2
+
+Run container
+
+🧠 MLflow Tracking
+
+Tracks:
+
+Parameters
+
+Metrics
+
+Models
+
+Hosted on DagsHub
+
+📊 Model Used
+
+RandomForest
+
+GradientBoosting
+
+LogisticRegression
+
+AdaBoost
+➡️ Best model selected automatically.
+
+🏆 Achievements
+
+Production-grade MLOps system
+
+Full CI/CD + cloud deployment
+
+Resume-level industry project
+
+👨‍💻 Author
+
+Omkar Kadam
+M.Tech AI, IIT Patna
+GitHub: https://github.com/Omkar985087
+
+⭐ If you like this project
+
+Give it a star ⭐ and use it in your resume 😄
