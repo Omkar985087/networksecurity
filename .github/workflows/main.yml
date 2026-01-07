@@ -24,7 +24,7 @@ jobs:
 
       - name: Run unit tests
         run: echo "Running unit tests"
-  
+
   build-and-push-ecr-image:
     name: Continuous Delivery
     needs: integration
@@ -75,12 +75,13 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      
+
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
       
-       - name: Pull latest images
+      
+      - name: Pull latest images
         run: |
          docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
          
@@ -94,4 +95,3 @@ jobs:
       - name: Clean previous images and containers
         run: |
          docker system prune -f
-
