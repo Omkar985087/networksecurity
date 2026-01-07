@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 2,
+  "agentName": "DESKTOP-LR7B6E3",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus3.actions.githubusercontent.com/UWh79jFXc83rUJyIgf2gKSQRNd1F52on8QMeo0mlx8fqlrmijA/",
+  "gitHubUrl": "https://github.com/Omkar985087/networksecurity",
+  "workFolder": "_work",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}
