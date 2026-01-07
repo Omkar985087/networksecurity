@@ -16,4 +16,5 @@ fastapi
 uvicorn
 python-multipart
 boto3
+keras
 #-e .
