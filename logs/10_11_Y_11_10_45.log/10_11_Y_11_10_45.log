@@ -1,0 +1,8 @@
+[2026-10-11 11:11:50,418],1025 httpx -INFO - HTTP Request: POST https://dagshub.com/login/oauth/middleman "HTTP/1.1 200 OK"
+[2026-10-11 11:11:51,645],1025 httpx -INFO - HTTP Request: POST https://dagshub.com/login/oauth/access_token "HTTP/1.1 200 OK"
+[2026-10-11 11:11:52,818],1025 httpx -INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-10-11 11:11:52,865],107 dagshub -INFO - Accessing as Omkar985087
+[2026-10-11 11:11:53,984],1025 httpx -INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Omkar985087/networksecurity "HTTP/1.1 200 OK"
+[2026-10-11 11:11:55,084],1025 httpx -INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-10-11 11:11:55,089],107 dagshub -INFO - Initialized MLflow to track repo "Omkar985087/networksecurity"
+[2026-10-11 11:11:55,090],107 dagshub -INFO - Repository Omkar985087/networksecurity initialized!

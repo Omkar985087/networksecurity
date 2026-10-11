@@ -1,0 +1,6 @@
+Model Name,"CV F1 (Macro, Train)",Test Accuracy,Test F1 (Phishing: 0),Test Precision (Phishing: 0),Test Recall (Phishing: 0),Test F1 (Legitimate: 1),Test Precision (Legitimate: 1),Test Recall (Legitimate: 1),Test F1 (Macro),Test ROC-AUC,Best Parameters
+Random Forest,0.9684,0.9738,0.9702,0.9772,0.9633,0.9766,0.9711,0.9821,0.9734,0.9978,{'n_estimators': 256}
+Gradient Boosting,0.9624,0.9643,0.9594,0.9668,0.952,0.9681,0.9623,0.974,0.9637,0.9959,"{'learning_rate': 0.2, 'n_estimators': 256, 'subsample': 1.0}"
+Decision Tree,0.9552,0.9742,0.9707,0.9782,0.9633,0.977,0.9711,0.9829,0.9738,0.983,{'criterion': 'entropy'}
+AdaBoost,0.9346,0.934,0.9243,0.9399,0.9092,0.9415,0.9295,0.9537,0.9329,0.9882,"{'learning_rate': 1.0, 'n_estimators': 256}"
+Logistic Regression,0.927,0.9326,0.9225,0.9406,0.9051,0.9404,0.9267,0.9545,0.9314,0.9806,{'C': 0.1}

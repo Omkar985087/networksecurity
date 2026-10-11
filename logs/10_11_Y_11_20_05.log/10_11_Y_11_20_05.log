@@ -1,0 +1,26 @@
+[2026-10-11 11:20:12,738],1025 httpx -INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-10-11 11:20:12,783],107 dagshub -INFO - Accessing as Omkar985087
+[2026-10-11 11:20:13,954],1025 httpx -INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Omkar985087/networksecurity "HTTP/1.1 200 OK"
+[2026-10-11 11:20:15,220],1025 httpx -INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-10-11 11:20:15,223],107 dagshub -INFO - Initialized MLflow to track repo "Omkar985087/networksecurity"
+[2026-10-11 11:20:15,223],107 dagshub -INFO - Repository Omkar985087/networksecurity initialized!
+[2026-10-11 11:20:15,401],52 root -INFO - initiate data ingestion
+[2026-10-11 11:20:18,472],104 root -INFO - Train-test split completed successfully
+[2026-10-11 11:20:18,474],56 root -INFO - data initiation completed
+[2026-10-11 11:20:18,484],63 root -INFO - initiate data validion
+[2026-10-11 11:20:18,596],39 root -INFO - Required columns: 31
+[2026-10-11 11:20:18,596],40 root -INFO - Dataframe columns: 31
+[2026-10-11 11:20:18,596],39 root -INFO - Required columns: 31
+[2026-10-11 11:20:18,596],40 root -INFO - Dataframe columns: 31
+[2026-10-11 11:20:18,792],67 root -INFO - data validation completed
+[2026-10-11 11:20:18,792],71 root -INFO - data Transformation started
+[2026-10-11 11:20:18,792],65 root -INFO - entered initiate_data_tranformation method of datatransfomration class
+[2026-10-11 11:20:18,793],67 root -INFO - starting data transformation
+[2026-10-11 11:20:18,904],49 root -INFO - entered get_data_transformer_object method of transformation class
+[2026-10-11 11:20:18,904],53 root -INFO - initialize KNNImputer with{'missing_values': nan, 'n_neighbors': 3, 'weights': 'uniform'}
+[2026-10-11 11:20:18,926],46 root -INFO - Entered the save_object method of MainUtils class
+[2026-10-11 11:20:18,931],50 root -INFO - Exited the save_object method of MainUtils class
+[2026-10-11 11:20:18,931],46 root -INFO - Entered the save_object method of MainUtils class
+[2026-10-11 11:20:18,935],50 root -INFO - Exited the save_object method of MainUtils class
+[2026-10-11 11:20:18,937],76 root -INFO - data Transformation completed
+[2026-10-11 11:20:18,938],79 root -INFO - Model Training started

@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "Omkar985087/networksecurity",
+  "pipelineDirectory": "networksecurity",
+  "workspaceDirectory": "networksecurity\\networksecurity",
+  "repositories": {
+    "Omkar985087/networksecurity": {
+      "repositoryPath": "networksecurity\\networksecurity",
+      "lastRunOn": "01/07/2026 12:47:21 +05:30"
+    }
+  },
+  "lastRunOn": "01/07/2026 18:35:45 +05:30"
+}

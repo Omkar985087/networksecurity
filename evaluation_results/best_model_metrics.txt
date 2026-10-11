@@ -1,0 +1,107 @@
+================================================================================
+NETWORK SECURITY / PHISHING DETECTION - BEST MODEL EVALUATION REPORT
+================================================================================
+
+1. DATASET & SPLITTING CONFIGURATION
+--------------------------------------------------
+Source Dataset: Network_data\phisingData.csv
+Total Records: 11055
+Number of Features: 30
+Splitting Strategy: Stratified Train-Test Split (test_size=0.20, random_state=42)
+Training Split Count: 8844 records (80.00%)
+Held-out Test Split Count: 2211 records (20.00%)
+
+2. TARGET LABEL DEFINITION & ENCODING
+--------------------------------------------------
+Original Dataset Target: 'Result' in {-1, 1}
+Codebase Encoded Target: 'Result' in {0, 1} (via replace(-1, 0))
+Mapping Table:
+  - Original: -1  ==>  Model Encoded: 0  ==>  Class: Phishing Website (Positive Class)
+  - Original: +1  ==>  Model Encoded: 1  ==>  Class: Legitimate Website
+
+Class Distribution in Held-out Test Set (Total: 2211):
+  - Phishing (0 / -1): 980 records (44.32%)
+  - Legitimate (1):    1231 records (55.68%)
+
+3. SELECTED BEST MODEL ARCHITECTURE & HYPERPARAMETERS
+--------------------------------------------------
+Best Model Name: Random Forest
+Model Class: RandomForestClassifier
+Model Selection Criterion: Test-independent 3-Fold Stratified Cross-Validation Macro F1
+Best Hyperparameters: {'n_estimators': 256}
+CV Macro F1 on Training Split: 0.9684 (96.84%) +/- 0.0002
+
+4. FINAL EVALUATION METRICS ON HELD-OUT TEST SPLIT (N = 2,211)
+--------------------------------------------------
+Overall Accuracy:                  0.9738  (97.38%)
+ROC-AUC Score:                     0.9978  (99.78%)
+
+A. Metrics with POSITIVE CLASS = PHISHING (0 / -1):
+  - Precision (Phishing):          0.9772  (97.72%)
+  - Recall (Phishing):             0.9633  (96.33%)
+  - F1-score (Phishing):           0.9702  (97.02%)
+
+B. Metrics with POSITIVE CLASS = LEGITIMATE (1):
+  - Precision (Legitimate):        0.9711  (97.11%)
+  - Recall (Legitimate):           0.9821  (98.21%)
+  - F1-score (Legitimate):         0.9766  (97.66%)
+
+C. Summary Averages:
+  - Macro Precision:               0.9742  (97.42%)
+  - Macro Recall:                  0.9727  (97.27%)
+  - Macro F1-score:                0.9734  (97.34%)
+  - Weighted F1-score:             0.9737  (97.37%)
+
+5. CONFUSION MATRIX (HELD-OUT TEST SET)
+--------------------------------------------------
+Confusion Matrix Array (Rows=True, Columns=Predicted):
+                 Pred: Phishing(0)   Pred: Legit(1)
+True: Phishing(0)       944                  36             
+True: Legit(1)          22                   1209           
+
+Detailed Counts (Phishing = Positive Event):
+  - True Positives (TP, Phishing correctly detected): 944
+  - False Negatives (FN, Phishing missed / false pass): 36
+  - False Positives (FP, Legitimate falsely blocked):   22
+  - True Negatives (TN, Legitimate correctly passed):  1209
+
+6. SKLEARN CLASSIFICATION REPORT
+--------------------------------------------------
+                precision    recall  f1-score   support
+
+  Phishing (0)     0.9772    0.9633    0.9702       980
+Legitimate (1)     0.9711    0.9821    0.9766      1231
+
+      accuracy                         0.9738      2211
+     macro avg     0.9742    0.9727    0.9734      2211
+  weighted avg     0.9738    0.9738    0.9737      2211
+
+
+7. CANDIDATE MODELS COMPARISON
+--------------------------------------------------
+         Model Name  CV F1 (Macro, Train)  Test Accuracy  Test F1 (Phishing: 0)  Test Precision (Phishing: 0)  Test Recall (Phishing: 0)  Test F1 (Legitimate: 1)  Test Precision (Legitimate: 1)  Test Recall (Legitimate: 1)  Test F1 (Macro)  Test ROC-AUC                                               Best Parameters
+      Random Forest                0.9684         0.9738                 0.9702                        0.9772                     0.9633                   0.9766                          0.9711                       0.9821           0.9734        0.9978                                         {'n_estimators': 256}
+  Gradient Boosting                0.9624         0.9643                 0.9594                        0.9668                     0.9520                   0.9681                          0.9623                       0.9740           0.9637        0.9959 {'learning_rate': 0.2, 'n_estimators': 256, 'subsample': 1.0}
+      Decision Tree                0.9552         0.9742                 0.9707                        0.9782                     0.9633                   0.9770                          0.9711                       0.9829           0.9738        0.9830                                      {'criterion': 'entropy'}
+           AdaBoost                0.9346         0.9340                 0.9243                        0.9399                     0.9092                   0.9415                          0.9295                       0.9537           0.9329        0.9882                   {'learning_rate': 1.0, 'n_estimators': 256}
+Logistic Regression                0.9270         0.9326                 0.9225                        0.9406                     0.9051                   0.9404                          0.9267                       0.9545           0.9314        0.9806                                                    {'C': 0.1}
+
+8. EXISTING PRODUCTION MODEL (final_model/model.pkl) VALIDATION
+--------------------------------------------------
+Model Type: RandomForestClassifier
+Held-out Test Accuracy:          0.9846 (98.46%)
+Held-out Test Phishing F1:        0.9826 (98.26%)
+Held-out Test Legitimate F1:      0.9862 (98.62%)
+Held-out Test Macro F1:           0.9844 (98.44%)
+Held-out Test ROC-AUC:            0.9994 (99.94%)
+
+9. DATA LEAKAGE PREVENTION & INTEGRITY NOTES
+--------------------------------------------------
+a. Preprocessing Isolation: The KNNImputer preprocessor was fitted exclusively on the 80% training set.
+   No imputation statistics or patterns from the 20% test set leaked into model fitting.
+b. Feature Isolation: The 'Result' target column was strictly removed prior to feature transformations.
+c. Test Set Independence: The test split was kept completely untouched during hyperparameter tuning and model selection.
+d. Unlabeled Data Handling: The 12-row Valid_data/test.csv lacks ground truth labels and was strictly excluded
+   from evaluation to avoid guesswork and invalid benchmark scores.
+e. Production Preservation: Existing files final_model/model.pkl and final_model/preprocessor.pkl were NOT
+   overwritten, ensuring production deployment and FastAPI serving remain fully intact and operational.

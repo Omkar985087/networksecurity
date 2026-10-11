@@ -1,0 +1,6 @@
+[2026-10-11 11:36:29,310],1025 httpx -INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-10-11 11:36:29,323],107 dagshub -INFO - Accessing as Omkar985087
+[2026-10-11 11:36:30,516],1025 httpx -INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Omkar985087/networksecurity "HTTP/1.1 200 OK"
+[2026-10-11 11:36:31,623],1025 httpx -INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-10-11 11:36:31,627],107 dagshub -INFO - Initialized MLflow to track repo "Omkar985087/networksecurity"
+[2026-10-11 11:36:31,628],107 dagshub -INFO - Repository Omkar985087/networksecurity initialized!
